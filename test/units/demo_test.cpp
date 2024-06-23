@@ -28,7 +28,7 @@ TEST(HelloTest, BasicAssertions) {
 }
 
 TEST(TestTopic, MoreEqualityTests){
-    EXPECT_EQ(GetMeaningOfLife(),0) << "Oh no, a mistake! ";
+    EXPECT_EQ(GetMeaningOfLife(),42);
     EXPECT_FLOAT_EQ(23.23F,23.23F);
 }
 
