@@ -36,5 +36,5 @@ jobs:
 
     # Run tests using CMake Preset
     - name: Test Project
-      run: ctest --preset run-all-tests
+      run: ctest --preset test-default-release
 
