@@ -32,7 +32,7 @@ jobs:
 
     # Build the project using CMake Preset
     - name: Build Project
-      run: cmake --build --preset default
+      run: cmake --build --preset build-g++
 
     # Run tests using CMake Preset
     - name: Test Project
