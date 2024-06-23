@@ -1,0 +1,40 @@
+name: C++ CI with CMake Presets
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Installe les dépendances nécessaires
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build g++ gcc git
+
+    # Clone vcpkg repository and install with bootstrap script
+    - name: Set up vcpkg
+      run: |
+        git clone https://github.com/microsoft/vcpkg.git
+        ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+        ./vcpkg/vcpkg integrate install
+
+    # Configure the project using CMake Preset
+    - name: Configure CMake Project
+      run: cmake --preset default
+
+    # Build the project using CMake Preset
+    - name: Build Project
+      run: cmake --build --preset default
+
+    # Run tests using CMake Preset
+    - name: Test Project
+      run: ctest --preset run-all-tests
+
